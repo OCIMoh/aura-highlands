@@ -1,0 +1,1671 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>AURA HIGHLANDS · ARCHITECTURAL MONOGRAPH</title>
+  <meta name="description" content="A monumental private architectural sanctuary in Argyll & Bute, Scottish Highlands." />
+  
+  <!-- Animaxxing Typography: Rethink Sans (Display/Body) & JetBrains Mono (Metadata) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Rethink+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       ANIMAXING DESIGN SYSTEM (style-animaxxing tokens)
+       Monochrome International Typographic Style (Swiss Editorial)
+       ========================================================================== */
+    :root, .sw-root {
+      --canvas: #0a0a0a;
+      --foreground: #ededed;
+      --muted: #888888;
+      --border: #222222;
+      --border-strong: #383838;
+      --surface: #141414;
+      --surface-hover: #1f1f1f;
+      --inverse: #ededed;
+      --inverse-hover: #ffffff;
+      --inverse-foreground: #0a0a0a;
+      --focus: #ededed;
+
+      --font-sans: 'Rethink Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+
+      --sw-bg: var(--canvas);
+      --sw-ink: var(--foreground);
+      --sw-ink-soft: var(--muted);
+      --sw-accent: var(--foreground);
+      --sw-font-display: var(--font-sans);
+      --sw-font-body: var(--font-sans);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--canvas);
+      color: var(--foreground);
+      font-family: var(--font-sans);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Precision Crosshair Reticle Cursor (Desktop Fine Pointer Only) */
+    @media (hover: hover) and (pointer: fine) {
+      body, a, button, [role="button"], input {
+        cursor: none !important;
+      }
+    }
+
+    .amx-cursor-dot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 4px;
+      background: var(--foreground);
+      border-radius: 1px;
+      pointer-events: none;
+      z-index: 100000;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+      transition: opacity 0.2s;
+    }
+
+    .amx-cursor-reticle {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(237, 237, 237, 0.4);
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      will-change: transform, width, height, border-color;
+      transition: border-color 0.2s, background-color 0.2s, transform 0.15s ease-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .amx-cursor-reticle::before,
+    .amx-cursor-reticle::after {
+      content: "";
+      position: absolute;
+      background: rgba(237, 237, 237, 0.35);
+      transition: background 0.2s;
+    }
+    .amx-cursor-reticle::before {
+      width: 8px;
+      height: 1px;
+    }
+    .amx-cursor-reticle::after {
+      width: 1px;
+      height: 8px;
+    }
+
+    .amx-cursor-hover {
+      width: 48px !important;
+      height: 48px !important;
+      border-color: var(--foreground) !important;
+      background: rgba(237, 237, 237, 0.08) !important;
+    }
+    .amx-cursor-hover::before,
+    .amx-cursor-hover::after {
+      background: var(--foreground) !important;
+    }
+
+    .amx-cursor-down {
+      transform: translate(-50%, -50%) scale(0.8) !important;
+    }
+
+    /* Architectural Corner Registration Marks (+) */
+    .amx-corner {
+      position: fixed;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--border-strong);
+      pointer-events: none;
+      z-index: 90;
+      user-select: none;
+    }
+    .amx-corner--tl { top: 14px; left: 18px; }
+    .amx-corner--tr { top: 14px; right: 18px; }
+    .amx-corner--bl { bottom: 14px; left: 18px; }
+    .amx-corner--br { bottom: 14px; right: 18px; }
+
+    /* ==========================================================================
+       AUTHENTIC ARCHITECTURAL PRELOADER (Split Curtain Reveal)
+       ========================================================================== */
+    .amx-preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 99990;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: all;
+    }
+
+    .amx-preloader__curtain {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 50.5%;
+      background: #0a0a0a;
+      z-index: 1;
+      will-change: transform;
+    }
+    .amx-preloader__curtain--top {
+      top: 0;
+      border-bottom: 1px solid var(--border-strong);
+      transform-origin: top center;
+    }
+    .amx-preloader__curtain--bottom {
+      bottom: 0;
+      border-top: 1px solid var(--border-strong);
+      transform-origin: bottom center;
+    }
+
+    .amx-preloader__content {
+      position: relative;
+      z-index: 2;
+      width: min(520px, 86vw);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      user-select: none;
+    }
+
+    .amx-preloader__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .amx-preloader__brand {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: var(--foreground);
+      margin-top: 6px;
+    }
+
+    .amx-preloader__sub {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .amx-preloader__status-box {
+      margin-top: 18px;
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .amx-preloader__track {
+      width: 100%;
+      height: 2px;
+      background: var(--border);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .amx-preloader__bar {
+      width: 100%;
+      height: 100%;
+      background: var(--foreground);
+      transform: scaleX(0);
+      transform-origin: left center;
+      will-change: transform;
+    }
+
+    .amx-preloader__meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    #amxPreloadCount {
+      color: var(--foreground);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       ULTRA-MINIMAL CORNER LOCKUP (Clean Top Header)
+       ========================================================================== */
+    .sw-topbar {
+      padding: 24px 36px !important;
+      border-bottom: none !important;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+    .sw-topbar * { pointer-events: auto; }
+
+    .sw-brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--foreground);
+    }
+    .sw-brand__mark {
+      display: none !important;
+    }
+    .sw-brand__name {
+      font-family: var(--font-mono) !important;
+      font-weight: 700 !important;
+      font-size: 0.88rem !important;
+      letter-spacing: 0.12em !important;
+      text-transform: uppercase !important;
+      color: var(--foreground) !important;
+      position: relative;
+    }
+    .sw-brand__name::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 1px;
+      background: var(--foreground);
+    }
+
+    /* Minimal Corner Inquire Action */
+    .sw-topcta {
+      font-family: var(--font-sans) !important;
+      font-weight: 800 !important;
+      font-size: 0.76rem !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.06em !important;
+      background: var(--inverse) !important;
+      color: var(--inverse-foreground) !important;
+      border: 1px solid var(--inverse) !important;
+      border-radius: 4px !important;
+      padding: 8px 18px !important;
+      transition: background 0.18s, color 0.18s, transform 0.15s ease-out;
+    }
+    .sw-topcta:hover {
+      background: var(--inverse-hover) !important;
+    }
+
+    /* ==========================================================================
+       EDITORIAL CONTENT & TYPOGRAPHY
+       ========================================================================== */
+    .sw-copylayer::before {
+      width: min(50vw, 700px) !important;
+      background: linear-gradient(90deg, #0a0a0a 0%, rgba(10, 10, 10, 0.94) 42%, rgba(10, 10, 10, 0.45) 75%, transparent 100%) !important;
+    }
+
+    .sw-copy {
+      left: clamp(24px, 5.5vw, 90px) !important;
+      width: min(48vw, 620px) !important;
+    }
+
+    /* Kinetic Typography with Split-Word Masking */
+    .sw-copy__title {
+      font-family: var(--font-sans) !important;
+      font-weight: 800 !important;
+      font-size: clamp(2.4rem, 5.2vw, 4.8rem) !important;
+      line-height: 0.88 !important;
+      letter-spacing: -0.045em !important;
+      text-transform: uppercase !important;
+      color: var(--foreground) !important;
+      margin: 0 !important;
+      text-shadow: none !important;
+      text-wrap: balance;
+      will-change: transform;
+    }
+
+    .amx-word-mask {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+      margin-right: 0.24em;
+    }
+    .amx-word-mask:last-child {
+      margin-right: 0;
+    }
+    .amx-word {
+      display: inline-block;
+      transform-origin: 0% 100%;
+      will-change: transform, opacity;
+    }
+
+    .sw-copy__body {
+      font-family: var(--font-sans) !important;
+      font-weight: 400 !important;
+      font-size: clamp(0.95rem, 1.2vw, 1.1rem) !important;
+      line-height: 1.55 !important;
+      color: #b0b0b0 !important;
+      margin-top: 24px !important;
+      max-width: 46ch !important;
+      text-shadow: none !important;
+    }
+
+    /* Product Specification Chips */
+    .sw-copy__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px !important;
+      margin-top: 28px !important;
+      padding: 0;
+      list-style: none;
+    }
+    .sw-copy__tags li {
+      font-family: var(--font-sans) !important;
+      font-size: 11px !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.04em !important;
+      text-transform: uppercase !important;
+      color: var(--foreground) !important;
+      background: var(--surface) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 4px !important;
+      padding: 6px 14px !important;
+    }
+
+    /* ==========================================================================
+       ARCHITECTURAL FIGURE CARDS (Right-Side Visual Callouts)
+       ========================================================================== */
+    .sw-figure {
+      position: absolute;
+      right: clamp(56px, 7.5vw, 140px);
+      top: 50%;
+      transform: translateY(-50%);
+      width: min(32vw, 440px);
+      z-index: 25;
+      pointer-events: auto;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: rgba(14, 14, 14, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+      opacity: 0;
+      will-change: transform, opacity;
+      transition: border-color 0.25s ease-out, box-shadow 0.25s ease-out;
+    }
+    .sw-figure:hover {
+      border-color: var(--border-strong);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    }
+    .sw-figure__frame {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+    .sw-figure__badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      padding: 3px 7px;
+      background: rgba(10, 10, 10, 0.78);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--muted);
+      backdrop-filter: blur(8px);
+      pointer-events: none;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .sw-figure:hover .sw-figure__badge {
+      color: var(--foreground);
+      border-color: var(--border-strong);
+      background: rgba(10, 10, 10, 0.92);
+    }
+    .sw-figure__frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .sw-figure:hover .sw-figure__frame img {
+      transform: scale(1.04);
+    }
+    .sw-figure__meta {
+      padding: 11px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-top: 1px solid var(--border);
+      background: rgba(10, 10, 10, 0.65);
+    }
+    .sw-figure__label {
+      color: var(--foreground);
+      font-weight: 700;
+    }
+    .sw-figure__spec {
+      color: var(--muted);
+      font-size: 0.65rem;
+    }
+
+    @media (max-width: 960px) {
+      .sw-figure {
+        display: none !important;
+      }
+    }
+
+    /* ==========================================================================
+       ARCHITECTURAL 2K LIGHTBOX MODAL
+       ========================================================================== */
+    .amx-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 999990;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.25s ease-out;
+    }
+    .amx-lightbox.is-open {
+      pointer-events: auto;
+      opacity: 1;
+    }
+    .amx-lightbox__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      cursor: pointer;
+    }
+    .amx-lightbox__dialog {
+      position: relative;
+      z-index: 1;
+      width: min(92vw, 1380px);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border-strong);
+      background: #0d0d0d;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.85);
+      transform: scale(0.96);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .amx-lightbox.is-open .amx-lightbox__dialog {
+      transform: scale(1);
+    }
+    .amx-lightbox__header {
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      background: #111111;
+    }
+    .amx-lightbox__title-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .amx-lightbox__brand {
+      color: var(--foreground);
+      font-weight: 700;
+    }
+    .amx-lightbox__divider {
+      color: var(--muted);
+    }
+    .amx-lightbox__subtitle {
+      color: var(--muted);
+    }
+    .amx-lightbox__close {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--muted);
+      border: none;
+      cursor: pointer;
+      padding: 4px 8px;
+      transition: color 0.18s;
+    }
+    .amx-lightbox__close:hover {
+      color: var(--foreground);
+    }
+    .amx-lightbox__body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #050505;
+      padding: 16px;
+      overflow: hidden;
+      max-height: calc(90vh - 100px);
+    }
+    .amx-lightbox__body img {
+      max-width: 100%;
+      max-height: calc(90vh - 130px);
+      object-fit: contain;
+      border-radius: 2px;
+      display: block;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .amx-lightbox__footer {
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      background: #111111;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .amx-lightbox__hint {
+      font-size: 0.62rem;
+    }
+
+    /* ==========================================================================
+       ARCHITECTURAL MODALS (Inquiry Dossier & Specification Matrix)
+       ========================================================================== */
+    .amx-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 999990;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.25s ease-out;
+    }
+    .amx-modal.is-open {
+      pointer-events: auto;
+      opacity: 1;
+    }
+    .amx-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      cursor: pointer;
+    }
+    .amx-modal__dialog {
+      position: relative;
+      z-index: 1;
+      width: min(92vw, 760px);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border-strong);
+      background: #0d0d0d;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.85);
+      transform: scale(0.96);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .amx-modal__dialog--wide {
+      width: min(94vw, 1100px);
+    }
+    .amx-modal.is-open .amx-modal__dialog {
+      transform: scale(1);
+    }
+    .amx-modal__header {
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      background: #111111;
+    }
+    .amx-modal__title-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .amx-modal__brand {
+      color: var(--foreground);
+      font-weight: 700;
+    }
+    .amx-modal__divider {
+      color: var(--muted);
+    }
+    .amx-modal__subtitle {
+      color: var(--muted);
+    }
+    .amx-modal__close {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--muted);
+      border: none;
+      cursor: pointer;
+      padding: 4px 8px;
+      transition: color 0.18s;
+    }
+    .amx-modal__close:hover {
+      color: var(--foreground);
+    }
+    .amx-modal__body {
+      padding: 24px 28px;
+      background: #0a0a0a;
+      overflow-y: auto;
+      max-height: calc(90vh - 120px);
+    }
+    .amx-modal__intro h3 {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      color: var(--foreground);
+    }
+    .amx-modal__intro p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0 0 20px;
+    }
+    .amx-form__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .amx-form__field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .amx-form__field label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .amx-form__field input,
+    .amx-form__field select,
+    .amx-form__field textarea {
+      background: #141414;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 10px 14px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--foreground);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .amx-form__field input:focus,
+    .amx-form__field select:focus,
+    .amx-form__field textarea:focus {
+      border-color: var(--foreground);
+    }
+    .amx-form__checkboxes {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 18px 0;
+      padding: 14px;
+      background: #121212;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .amx-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: #c0c0c0;
+      cursor: pointer;
+    }
+    .amx-checkbox input {
+      accent-color: #ededed;
+      cursor: pointer;
+    }
+    .amx-form__submit {
+      width: 100%;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .amx-modal__success {
+      padding: 30px 10px;
+      text-align: center;
+    }
+    .amx-modal__success-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: #4ade80;
+      margin-bottom: 14px;
+    }
+    .amx-modal__success-title {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: 1.8rem;
+      margin: 0 0 12px;
+      color: var(--foreground);
+    }
+    .amx-modal__success-body {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 48ch;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+    .amx-modal__footer {
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      background: #111111;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .amx-modal__action-btn {
+      background: transparent;
+      border: none;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--foreground);
+      font-weight: 700;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .amx-modal__action-btn:hover {
+      text-decoration: underline;
+    }
+
+    /* Specifications Matrix */
+    .amx-specs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .amx-specs-col {
+      background: #121212;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 20px;
+    }
+    .amx-specs-header {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: var(--foreground);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .amx-specs-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: #b0b0b0;
+    }
+    .amx-specs-list strong {
+      color: var(--foreground);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    @media (max-width: 860px) {
+      .amx-form__grid { grid-template-columns: 1fr; gap: 8px; }
+      .amx-specs-grid { grid-template-columns: 1fr; gap: 14px; }
+    }
+
+    /* CTA Buttons */
+    .sw-copy__cta {
+      display: flex;
+      gap: 12px;
+      margin-top: 34px;
+    }
+    .sw-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 26px !important;
+      font-family: var(--font-sans) !important;
+      font-weight: 800 !important;
+      font-size: 0.88rem !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.02em !important;
+      border-radius: 4px !important;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.18s, border-color 0.18s, color 0.18s, transform 0.15s ease-out;
+      position: relative;
+    }
+    .sw-btn--primary {
+      background: var(--inverse) !important;
+      color: var(--inverse-foreground) !important;
+      border: 2px solid var(--inverse) !important;
+    }
+    .sw-btn--primary:hover {
+      background: var(--inverse-hover) !important;
+      border-color: var(--inverse-hover) !important;
+    }
+    .sw-btn--ghost {
+      background: transparent !important;
+      color: var(--foreground) !important;
+      border: 2px solid var(--border-strong) !important;
+    }
+    .sw-btn--ghost:hover {
+      border-color: var(--foreground) !important;
+      background: var(--surface-hover) !important;
+    }
+
+    /* Geometric Particle Shards (Primary CTA Blast-Off) */
+    .amx-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 999999;
+      background: var(--foreground);
+      border-radius: 1px;
+      will-change: transform, opacity;
+    }
+
+    /* Right Chapter Rail */
+    .sw-route {
+      right: 24px !important;
+      padding: 0 !important;
+      gap: 18px !important;
+    }
+    .sw-route::before {
+      background: var(--border) !important;
+      opacity: 1 !important;
+      width: 1px !important;
+    }
+    .sw-route__dot i {
+      width: 5px !important;
+      height: 5px !important;
+      border-radius: 1px !important;
+      background: var(--muted) !important;
+    }
+    .sw-route__dot.is-active i {
+      background: var(--foreground) !important;
+      transform: scale(1.6) !important;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15) !important;
+    }
+    .sw-route__label {
+      background: var(--surface) !important;
+      color: var(--foreground) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 4px !important;
+      font-family: var(--font-mono) !important;
+      font-size: 0.72rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.08em !important;
+      text-transform: uppercase !important;
+    }
+
+    /* Top Hairline Progress Scrollbar */
+    .sw-scrollbar {
+      height: 1px !important;
+      background: var(--border) !important;
+    }
+    .sw-scrollbar span {
+      background: var(--foreground) !important;
+    }
+
+    /* Scroll Hint */
+    .sw-hint {
+      bottom: 32px !important;
+      font-family: var(--font-mono) !important;
+      font-size: 0.68rem !important;
+      letter-spacing: 0.14em !important;
+      color: var(--muted) !important;
+    }
+    .sw-hint i {
+      border-radius: 2px !important;
+      width: 16px !important;
+      height: 24px !important;
+      border-color: var(--border-strong) !important;
+    }
+    .sw-hint i::after {
+      background: var(--foreground) !important;
+      border-radius: 0 !important;
+      width: 2px !important;
+      height: 5px !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Custom Reticle & Dot Cursor (Desktop only) -->
+  <div id="amxCursorDot" class="amx-cursor-dot"></div>
+  <div id="amxCursorReticle" class="amx-cursor-reticle"></div>
+
+  <!-- Swiss Crosshairs (+) in corners -->
+  <div class="amx-corner amx-corner--tl">+</div>
+  <div class="amx-corner amx-corner--tr">+</div>
+  <div class="amx-corner amx-corner--bl">+</div>
+  <div class="amx-corner amx-corner--br">+</div>
+
+  <!-- Editorial Preloader Curtain -->
+  <div id="amxPreloader" class="amx-preloader">
+    <div class="amx-preloader__curtain amx-preloader__curtain--top" id="curtainTop"></div>
+    <div class="amx-preloader__curtain amx-preloader__curtain--bottom" id="curtainBottom"></div>
+    <div class="amx-preloader__content" id="preloaderContent">
+      <div class="amx-preloader__header">
+        <span>ARCHITECTURAL MONOGRAPH</span>
+        <span>ARGYLL & BUTE · SCOTLAND</span>
+      </div>
+      <div class="amx-preloader__brand">AURA HIGHLANDS</div>
+      <div class="amx-preloader__sub">A MONUMENTAL PRIVATE SANCTUARY</div>
+      
+      <div class="amx-preloader__status-box">
+        <div class="amx-preloader__track">
+          <div class="amx-preloader__bar" id="amxPreloadBar"></div>
+        </div>
+        <div class="amx-preloader__meta">
+          <span id="amxPreloadCount">00%</span>
+          <span>FIVE SPATIAL VOLUMES</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="top"></div>
+  <div id="world"></div>
+
+  <!-- Architectural 2K Lightbox Modal -->
+  <div id="amxLightbox" class="amx-lightbox" aria-hidden="true">
+    <div class="amx-lightbox__backdrop" id="amxLightboxBackdrop"></div>
+    <div class="amx-lightbox__dialog">
+      <div class="amx-lightbox__header">
+        <div class="amx-lightbox__title-lockup">
+          <span class="amx-lightbox__brand">AURA HIGHLANDS</span>
+          <span class="amx-lightbox__divider">/</span>
+          <span class="amx-lightbox__subtitle" id="amxLightboxTitle">FIG 01.A // ARCHITECTURAL ARCHIVE</span>
+        </div>
+        <button class="amx-lightbox__close" id="amxLightboxClose" aria-label="Close modal">[ESC / CLOSE ×]</button>
+      </div>
+      <div class="amx-lightbox__body">
+        <img id="amxLightboxImg" src="" alt="High resolution architectural specification" />
+      </div>
+      <div class="amx-lightbox__footer">
+        <span class="amx-lightbox__spec" id="amxLightboxSpec">2752 × 1536 2K MASTER ARCHIVE</span>
+        <span class="amx-lightbox__hint">CLICK ANYWHERE OR PRESS ESC TO DISMISS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confidential Acquisition Dossier Modal -->
+  <div id="amxInquireModal" class="amx-modal" aria-hidden="true">
+    <div class="amx-modal__backdrop" id="amxInquireBackdrop"></div>
+    <div class="amx-modal__dialog">
+      <div class="amx-modal__header">
+        <div class="amx-modal__title-lockup">
+          <span class="amx-modal__brand">AURA HIGHLANDS</span>
+          <span class="amx-modal__divider">/</span>
+          <span class="amx-modal__subtitle">CONFIDENTIAL ACQUISITION DOSSIER</span>
+        </div>
+        <button class="amx-modal__close" id="amxInquireClose" aria-label="Close modal">[ESC / CLOSE ×]</button>
+      </div>
+      <div class="amx-modal__body">
+        <div id="amxInquireFormWrap">
+          <div class="amx-modal__intro">
+            <h3>PRIVATE TREATY ACQUISITION INQUIRY</h3>
+            <p>Direct allocation for sovereign principals and family offices. Complete engineering dossiers, CAD packages, and physical site inspections require verified identity protocol.</p>
+          </div>
+          <form id="amxInquireForm" class="amx-form">
+            <div class="amx-form__grid">
+              <div class="amx-form__field">
+                <label for="inqName">PRINCIPAL OR REPRESENTATIVE NAME *</label>
+                <input type="text" id="inqName" required placeholder="e.g. Alistair MacLeod" />
+              </div>
+              <div class="amx-form__field">
+                <label for="inqEntity">FAMILY OFFICE / ENTITY</label>
+                <input type="text" id="inqEntity" placeholder="e.g. Highland Capital Trust" />
+              </div>
+              <div class="amx-form__field">
+                <label for="inqEmail">CONFIDENTIAL DISPATCH EMAIL *</label>
+                <input type="email" id="inqEmail" required placeholder="name@domain.com" />
+              </div>
+              <div class="amx-form__field">
+                <label for="inqPhone">SECURE TELEPHONE / SIGNAL</label>
+                <input type="tel" id="inqPhone" placeholder="+44 ..." />
+              </div>
+            </div>
+            <div class="amx-form__field">
+              <label for="inqTimeline">ACQUISITION HORIZON</label>
+              <select id="inqTimeline">
+                <option value="immediate">Immediate Acquisition // 2026 Sovereign Tender</option>
+                <option value="q1q2_2027">Q1–Q2 2027 Allocation</option>
+                <option value="private_review">Private Architectural Review / Discretionary</option>
+              </select>
+            </div>
+            <div class="amx-form__checkboxes">
+              <label class="amx-checkbox">
+                <input type="checkbox" id="inqCad" checked />
+                <span>Include full 1:50 CAD structural construction package</span>
+              </label>
+              <label class="amx-checkbox">
+                <input type="checkbox" id="inqHelipad" />
+                <span>Coordinate direct helicopter transfer from Glasgow / Edinburgh private FBO</span>
+              </label>
+            </div>
+            <div class="amx-form__field">
+              <label for="inqNotes">CONFIDENTIAL REQUIREMENTS / REMARKS</label>
+              <textarea id="inqNotes" rows="2" placeholder="Specific security, aircraft clearance, or family office requirements..."></textarea>
+            </div>
+            <button type="submit" class="sw-btn sw-btn--primary amx-form__submit" id="inqSubmitBtn">
+              TRANSMIT CONFIDENTIAL INQUIRY →
+            </button>
+          </form>
+        </div>
+        <div id="amxInquireSuccess" class="amx-modal__success" style="display:none;">
+          <div class="amx-modal__success-badge">DOSSIER REGISTERED // REF #AH-2026-904</div>
+          <h3 class="amx-modal__success-title">TRANSMISSION VERIFIED</h3>
+          <p class="amx-modal__success-body">The complete architectural monograph, physical deed boundary schematics, and private viewing dossier have been prepared and dispatched to your office.</p>
+          <button class="sw-btn sw-btn--ghost" id="amxInquireDoneBtn">RETURN TO MONOGRAPH [ESC]</button>
+        </div>
+      </div>
+      <div class="amx-modal__footer">
+        <span>STRICT CONFIDENTIALITY GOVERNED BY NON-DISCLOSURE PROTOCOL</span>
+        <span>ARGYLL & BUTE · SCOTLAND</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Architectural Specification Matrix Modal -->
+  <div id="amxSpecsModal" class="amx-modal" aria-hidden="true">
+    <div class="amx-modal__backdrop" id="amxSpecsBackdrop"></div>
+    <div class="amx-modal__dialog amx-modal__dialog--wide">
+      <div class="amx-modal__header">
+        <div class="amx-modal__title-lockup">
+          <span class="amx-modal__brand">AURA HIGHLANDS</span>
+          <span class="amx-modal__divider">/</span>
+          <span class="amx-modal__subtitle">ARCHITECTURAL SPECIFICATION MATRIX</span>
+        </div>
+        <button class="amx-modal__close" id="amxSpecsClose" aria-label="Close modal">[ESC / CLOSE ×]</button>
+      </div>
+      <div class="amx-modal__body amx-modal__body--scroll">
+        <div class="amx-specs-grid">
+          <div class="amx-specs-col">
+            <div class="amx-specs-header">01 // SPATIAL VOLUMES</div>
+            <ul class="amx-specs-list">
+              <li><strong>Internal Gross Conditioned:</strong> 12,400 sq ft (1,152 m²)</li>
+              <li><strong>Private Promontory:</strong> 4.8 acres (19,425 m²) native reserve</li>
+              <li><strong>Living Pavilion:</strong> 4,200 sq ft, 14m structural glass curtain</li>
+              <li><strong>Subterranean Grotto:</strong> 2,600 sq ft rock-cut reflection sanctuary</li>
+              <li><strong>Hydrotherapy Pavilion:</strong> 1,800 sq ft twin geothermal pools</li>
+              <li><strong>Observation Terrace:</strong> 1,400 sq ft post-tensioned 8m cantilever</li>
+              <li><strong>Private Suites:</strong> 5 bedroom suites with mountain-facing balconies</li>
+            </ul>
+          </div>
+          <div class="amx-specs-col">
+            <div class="amx-specs-header">02 // MATERIALS & CRAFTSMANSHIP</div>
+            <ul class="amx-specs-list">
+              <li><strong>Bedrock Integration:</strong> Native Argyll schist cut & pinned</li>
+              <li><strong>Superstructure:</strong> Monolithic board-formed architectural concrete</li>
+              <li><strong>Glazing:</strong> Low-iron structural glass, triple-pane acoustic thermal break</li>
+              <li><strong>Stonework:</strong> Hand-split Scottish basalt & solid granite lintels</li>
+              <li><strong>Woodwork:</strong> 280mm wide smoked European oak planking</li>
+              <li><strong>Metalwork:</strong> Hot-rolled blackened steel with shadow gaps</li>
+            </ul>
+          </div>
+          <div class="amx-specs-col">
+            <div class="amx-specs-header">03 // ENGINEERING & OFF-GRID</div>
+            <ul class="amx-specs-list">
+              <li><strong>Geothermal Heating:</strong> Deep-rock closed-loop boreholes</li>
+              <li><strong>Hydronic Slab:</strong> Continuous radiant underfloor heating throughout</li>
+              <li><strong>Structural Rating:</strong> Tested to 140 mph Highland gales (Class 4)</li>
+              <li><strong>Off-Grid Power:</strong> Concealed solar PV array + lithium battery storage</li>
+              <li><strong>Pure Water:</strong> Subterranean natural mineral spring tap + ceramic filtration</li>
+              <li><strong>Logistics & Security:</strong> 450m private schist road, gatehouse & helipad</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="amx-modal__footer">
+        <span>DOCUMENT REFERENCE: ARCH-SPEC-2026-V4</span>
+        <button class="amx-modal__action-btn" id="amxSpecsInquireBtn">[ INQUIRE FOR FULL DOSSIER → ]</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Vendor Scripts -->
+  <script src="assets/vendor/lenis.min.js"></script>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="scrub-engine.js"></script>
+
+  <script>
+    // =========================================================================
+    // 1. PARTICLE BLAST-OFF SYSTEM (CTA INTERACTIONS)
+    // =========================================================================
+    function blastOff(x, y) {
+      const count = 22;
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = 'amx-particle';
+        const size = Math.floor(Math.random() * 4 + 3);
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.left = x + 'px';
+        p.style.top = y + 'px';
+        document.body.appendChild(p);
+
+        const angle = Math.random() * Math.PI * 2;
+        const dist = Math.random() * 100 + 40;
+        const tx = Math.cos(angle) * dist;
+        const ty = Math.sin(angle) * dist;
+        const rot = (Math.random() - 0.5) * 480;
+
+        if (typeof gsap !== 'undefined') {
+          gsap.to(p, {
+            x: tx,
+            y: ty,
+            rotation: rot,
+            scale: 0,
+            opacity: 0,
+            duration: Math.random() * 0.4 + 0.45,
+            ease: 'power4.out',
+            onComplete: () => p.remove()
+          });
+        } else {
+          setTimeout(() => p.remove(), 600);
+        }
+      }
+    }
+
+    // =========================================================================
+    // 2. LENIS SMOOTH SCROLL & VELOCITY KINETIC SKEW
+    // =========================================================================
+    let lenis = null;
+    if (typeof Lenis !== 'undefined') {
+      lenis = new Lenis({
+        duration: 1.25,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        smoothTouch: false,
+        wheelMultiplier: 0.95,
+      });
+      window.lenis = lenis;
+
+      function lenisRaf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(lenisRaf);
+      }
+      requestAnimationFrame(lenisRaf);
+
+      // Kinetic Typography Shear on Fast Scroll
+      lenis.on('scroll', (e) => {
+        const v = e.velocity || 0;
+        const skew = Math.max(-4.5, Math.min(4.5, v * 0.038));
+        if (typeof gsap !== 'undefined') {
+          gsap.to('.sw-copy__title', {
+            skewY: -skew,
+            duration: 0.22,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
+        }
+      });
+    }
+
+    // =========================================================================
+    // 3. MOUNT SCROLL WORLD (AUTHENTIC PRODUCT DATA & IDLE FLIGHT HANDOFF)
+    // =========================================================================
+    mountScrollWorld(document.getElementById('world'), {
+      brand: { name: 'aura highlands', href: '#top' },
+      cta: { label: 'Inquire', href: '#inquire' },
+      nav: false, // Ultra-minimal corner lockup (no center pills)
+      hint: 'scroll to advance',
+      diveScroll: 1.5,
+      crossfade: 0.08,
+      heroScroll: 1.25,
+      hero: {
+        title: 'AURA\nHIGHLANDS',
+        coords: 'ARGYLL & BUTE · SCOTLAND // 56°14\'N 05°08\'W',
+        elevation: '820M ELEVATION · PRIVATE TREATY',
+        descriptor: 'MONOLITHIC RESIDENCY CUT INTO SCHIST BEDROCK',
+        sub: 'FIVE SPATIAL VOLUMES // LOT 01',
+        cta: 'EXPLORE MONOGRAPH'
+      },
+      sections: [
+        {
+          id: 'approach',
+          label: '01 · The Approach',
+          still: 'assets/approach.webp',
+          clip: 'assets/vid/approach.mp4',
+          accent: '#ffffff',
+          scroll: 1.6,
+          linger: 0.35,
+          title: 'CANTILEVERED SCHIST SPINE.',
+          body: 'Private access road cut through native schist bedrock leading to a monolithic board-formed concrete gatehouse and sheltered porte-cochère anchored at 820 meters elevation.',
+          tags: ['Schist Bedrock', 'Board-Formed Concrete', '820m Elevation'],
+          inset: {
+            img: 'assets/insets/fig_01_survey.webp',
+            full: 'assets/insets/full_01_survey.webp',
+            label: 'FIG 01.A // TOPOGRAPHIC MASTER PLAN',
+            spec: '4.8 ACRES · 820M RIDGE CONTOURS'
+          }
+        },
+        {
+          id: 'hall',
+          label: '02 · The Great Hall',
+          still: 'assets/hall.webp',
+          clip: 'assets/vid/hall.mp4',
+          accent: '#ffffff',
+          scroll: 1.7,
+          linger: 0.45,
+          title: 'STRUCTURAL GLAZING & SUSPENDED HEARTH.',
+          body: 'Triple-height living pavilion oriented south-west over the glen. 14-meter frameless glass curtain wall with suspended blackened steel hearth and smoked European oak planking.',
+          tags: ['14m Structural Glass', 'Blackened Steel', 'Smoked European Oak'],
+          inset: {
+            img: 'assets/insets/fig_02_section.webp',
+            full: 'assets/insets/full_02_section.webp',
+            label: 'FIG 02.A // 1:50 STRUCTURAL SECTION',
+            spec: '14M GLAZING SPAN · SUSPENDED HEARTH'
+          }
+        },
+        {
+          id: 'court',
+          label: '03 · The Grotto',
+          still: 'assets/court.webp',
+          clip: 'assets/vid/court.mp4',
+          accent: '#ffffff',
+          scroll: 1.5,
+          linger: 0.35,
+          title: 'NATURAL BASALT REFLECTING COURT.',
+          body: 'Acoustically isolated subterranean sanctuary carved directly into native granite. Clad in hand-split Scottish basalt with a dark thermal reflection basin and perimeter shadow gaps.',
+          tags: ['Hand-Split Basalt', 'Thermal Pool', 'Acoustic Isolation'],
+          inset: {
+            img: 'assets/insets/fig_03_material.webp',
+            full: 'assets/insets/full_03_material.webp',
+            label: 'FIG 03.A // TACTILE MATERIALITY',
+            spec: 'CHISELED BASALT · STEEL JOINERY'
+          }
+        },
+        {
+          id: 'spa',
+          label: '04 · Thermal Baths',
+          still: 'assets/spa.webp',
+          clip: 'assets/vid/spa.mp4',
+          accent: '#ffffff',
+          scroll: 1.6,
+          linger: 0.4,
+          title: 'OPEN-AIR GEOTHERMAL ROCK BATHS.',
+          body: 'Twin geothermal hydrotherapy pools fed by natural mineral springs. Monolithic granite lintels and raw stone arches open outward to framed views of the descending mist and falls.',
+          tags: ['Geothermal Mineral Springs', 'Solid Granite Lintels', 'Open Canopy'],
+          inset: {
+            img: 'assets/insets/fig_04_thermal.webp',
+            full: 'assets/insets/full_04_thermal.webp',
+            label: 'FIG 04.A // GEOTHERMAL HYDROLOGY',
+            spec: 'DEEP-ROCK BOREHOLES · RADIANT SLAB'
+          }
+        },
+        {
+          id: 'terrace',
+          label: '05 · Horizon Terrace',
+          still: 'assets/terrace.webp',
+          clip: 'assets/vid/terrace_scrub.mp4', // Camera flight landing at 2.0s
+          idleClip: 'assets/vid/Flame_flickering_in_stone_fire_7532673e.mp4', // Living ambient flame loop
+          accent: '#ffffff',
+          scroll: 1.9,
+          linger: 0.5,
+          title: 'CANTILEVERED HEARTH TERRACE.',
+          body: 'Post-tensioned concrete observation deck projecting 8 meters over the ridge edge. Features a sunken circular basalt fire table offering an unhindered 180° panorama across the glen.',
+          tags: ['8m Post-Tensioned Cantilever', 'Basalt Fire Table', '180° Mountain Vista'],
+          inset: {
+            img: 'assets/insets/fig_05_hearth.webp',
+            full: 'assets/insets/full_05_hearth.webp',
+            label: 'FIG 05.A // HEARTH TERRACE AT DUSK',
+            spec: 'SUNKEN FIRE TABLE · PANORAMIC VISTA'
+          },
+          cta: {
+            primary: { label: 'Request Residency Portfolio', href: 'mailto:residency@aurahighlands.com' },
+            secondary: { label: 'Schedule Private Viewing', href: '#top' }
+          }
+        }
+      ],
+      connectors: []
+    });
+
+    // =========================================================================
+    // 4. INTERACTIVE RETICLE & DOT CURSOR WITH GSAP QUICKTO
+    // =========================================================================
+    const cursorDot = document.getElementById('amxCursorDot');
+    const cursorReticle = document.getElementById('amxCursorReticle');
+
+    if (cursorDot && cursorReticle && typeof gsap !== 'undefined') {
+      const setDotX = gsap.quickTo(cursorDot, "x", { duration: 0.08, ease: "power1.out" });
+      const setDotY = gsap.quickTo(cursorDot, "y", { duration: 0.08, ease: "power1.out" });
+      const setReticleX = gsap.quickTo(cursorReticle, "x", { duration: 0.28, ease: "power3.out" });
+      const setReticleY = gsap.quickTo(cursorReticle, "y", { duration: 0.28, ease: "power3.out" });
+
+      window.addEventListener('mousemove', (e) => {
+        setDotX(e.clientX);
+        setDotY(e.clientY);
+        setReticleX(e.clientX);
+        setReticleY(e.clientY);
+      }, { passive: true });
+
+      window.addEventListener('mousedown', () => {
+        cursorReticle.classList.add('amx-cursor-down');
+      });
+      window.addEventListener('mouseup', () => {
+        cursorReticle.classList.remove('amx-cursor-down');
+      });
+
+      function attachCursorHoverListeners() {
+        document.querySelectorAll('a, button, .sw-route__dot, .sw-btn, .sw-figure, .amx-modal__close, .amx-modal__backdrop, .amx-modal__action-btn, .amx-lightbox__close, .amx-lightbox__backdrop, .amx-checkbox, input, select, textarea').forEach(el => {
+          if (el._hasCursorListeners) return;
+          el._hasCursorListeners = true;
+          el.addEventListener('mouseenter', () => {
+            cursorReticle.classList.add('amx-cursor-hover');
+          });
+          el.addEventListener('mouseleave', () => {
+            cursorReticle.classList.remove('amx-cursor-hover');
+          });
+        });
+      }
+      attachCursorHoverListeners();
+      setTimeout(attachCursorHoverListeners, 600);
+      setInterval(attachCursorHoverListeners, 2000);
+    }
+
+    // =========================================================================
+    // 4.B ARCHITECTURAL 2K LIGHTBOX VIEWER
+    // =========================================================================
+    const amxLightbox = document.getElementById('amxLightbox');
+    const amxLightboxImg = document.getElementById('amxLightboxImg');
+    const amxLightboxTitle = document.getElementById('amxLightboxTitle');
+    const amxLightboxSpec = document.getElementById('amxLightboxSpec');
+    const amxLightboxClose = document.getElementById('amxLightboxClose');
+    const amxLightboxBackdrop = document.getElementById('amxLightboxBackdrop');
+
+    window.openArchitecturalLightbox = function(fullSrc, label, spec) {
+      if (!amxLightbox) return;
+      if (amxLightboxImg) amxLightboxImg.src = fullSrc;
+      if (amxLightboxTitle) amxLightboxTitle.textContent = label || 'ARCHITECTURAL ARCHIVE';
+      if (amxLightboxSpec) amxLightboxSpec.textContent = spec || '2752 × 1536 2K MASTER SPECIFICATION';
+      amxLightbox.classList.add('is-open');
+      amxLightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    function closeArchitecturalLightbox() {
+      if (!amxLightbox) return;
+      amxLightbox.classList.remove('is-open');
+      amxLightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (amxLightboxImg) {
+        setTimeout(() => { if (!amxLightbox.classList.contains('is-open')) amxLightboxImg.src = ''; }, 300);
+      }
+    }
+
+    if (amxLightboxClose) amxLightboxClose.addEventListener('click', closeArchitecturalLightbox);
+    if (amxLightboxBackdrop) amxLightboxBackdrop.addEventListener('click', closeArchitecturalLightbox);
+
+    // =========================================================================
+    // 4.C CONFIDENTIAL ACQUISITION DOSSIER & SPECIFICATION MODALS
+    // =========================================================================
+    const amxInquireModal = document.getElementById('amxInquireModal');
+    const amxInquireClose = document.getElementById('amxInquireClose');
+    const amxInquireBackdrop = document.getElementById('amxInquireBackdrop');
+    const inqForm = document.getElementById('amxInquireForm');
+    const inqFormWrap = document.getElementById('amxInquireFormWrap');
+    const inqSuccess = document.getElementById('amxInquireSuccess');
+    const inqSubmitBtn = document.getElementById('inqSubmitBtn');
+    const inqDoneBtn = document.getElementById('amxInquireDoneBtn');
+
+    const amxSpecsModal = document.getElementById('amxSpecsModal');
+    const amxSpecsClose = document.getElementById('amxSpecsClose');
+    const amxSpecsBackdrop = document.getElementById('amxSpecsBackdrop');
+    const amxSpecsInquireBtn = document.getElementById('amxSpecsInquireBtn');
+
+    window.openConfidentialInquiry = function() {
+      if (!amxInquireModal) return;
+      if (inqFormWrap) inqFormWrap.style.display = 'block';
+      if (inqSuccess) inqSuccess.style.display = 'none';
+      if (amxSpecsModal) amxSpecsModal.classList.remove('is-open');
+      if (amxLightbox) amxLightbox.classList.remove('is-open');
+      amxInquireModal.classList.add('is-open');
+      amxInquireModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeConfidentialInquiry = function() {
+      if (!amxInquireModal) return;
+      amxInquireModal.classList.remove('is-open');
+      amxInquireModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    window.openArchitecturalSpecs = function() {
+      if (!amxSpecsModal) return;
+      if (amxInquireModal) amxInquireModal.classList.remove('is-open');
+      if (amxLightbox) amxLightbox.classList.remove('is-open');
+      amxSpecsModal.classList.add('is-open');
+      amxSpecsModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeArchitecturalSpecs = function() {
+      if (!amxSpecsModal) return;
+      amxSpecsModal.classList.remove('is-open');
+      amxSpecsModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    if (amxInquireClose) amxInquireClose.addEventListener('click', closeConfidentialInquiry);
+    if (amxInquireBackdrop) amxInquireBackdrop.addEventListener('click', closeConfidentialInquiry);
+    if (amxSpecsClose) amxSpecsClose.addEventListener('click', closeArchitecturalSpecs);
+    if (amxSpecsBackdrop) amxSpecsBackdrop.addEventListener('click', closeArchitecturalSpecs);
+    if (amxSpecsInquireBtn) {
+      amxSpecsInquireBtn.addEventListener('click', () => {
+        closeArchitecturalSpecs();
+        setTimeout(openConfidentialInquiry, 200);
+      });
+    }
+
+    if (inqForm) {
+      inqForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        inqSubmitBtn.textContent = 'AUTHENTICATING & TRANSMITTING...';
+        inqSubmitBtn.style.opacity = '0.6';
+        inqSubmitBtn.style.pointerEvents = 'none';
+
+        setTimeout(() => {
+          if (inqFormWrap) inqFormWrap.style.display = 'none';
+          if (inqSuccess) inqSuccess.style.display = 'block';
+          inqSubmitBtn.textContent = 'TRANSMIT CONFIDENTIAL INQUIRY →';
+          inqSubmitBtn.style.opacity = '1';
+          inqSubmitBtn.style.pointerEvents = 'auto';
+        }, 750);
+      });
+    }
+    if (inqDoneBtn) {
+      inqDoneBtn.addEventListener('click', closeConfidentialInquiry);
+    }
+
+    // =========================================================================
+    // 4.D KEYBOARD NAVIGATION & REAL-TIME HIGHLANDS CLOCK
+    // =========================================================================
+    window.addEventListener('keydown', (e) => {
+      const activeTag = document.activeElement ? document.activeElement.tagName : '';
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(activeTag)) {
+        if (e.key === 'Escape') {
+          closeConfidentialInquiry();
+          closeArchitecturalSpecs();
+          closeArchitecturalLightbox();
+        }
+        return;
+      }
+      if (e.key === 'Escape') {
+        closeConfidentialInquiry();
+        closeArchitecturalSpecs();
+        closeArchitecturalLightbox();
+      } else if (e.key === 'i' || e.key === 'I') {
+        if (amxInquireModal && amxInquireModal.classList.contains('is-open')) closeConfidentialInquiry();
+        else openConfidentialInquiry();
+      } else if (e.key === 's' || e.key === 'S') {
+        if (amxSpecsModal && amxSpecsModal.classList.contains('is-open')) closeArchitecturalSpecs();
+        else openArchitecturalSpecs();
+      } else if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === 'j') {
+        e.preventDefault();
+        window.scrollBy({ top: window.innerHeight * 0.9, behavior: 'smooth' });
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'k') {
+        e.preventDefault();
+        window.scrollBy({ top: -window.innerHeight * 0.9, behavior: 'smooth' });
+      }
+    });
+
+    // =========================================================================
+    // 5. MAGNETIC BUTTON MICRO-INTERACTIONS & PARTICLE BLAST WIRE-UP
+    // =========================================================================
+    function wireInteractiveButtons() {
+      document.querySelectorAll('.sw-btn, .sw-topcta, .sw-hero__explore').forEach((btn) => {
+        if (btn._magneticBound) return;
+        btn._magneticBound = true;
+
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = (e.clientX - rect.left - rect.width / 2) * 0.24;
+          const y = (e.clientY - rect.top - rect.height / 2) * 0.24;
+          if (typeof gsap !== 'undefined') {
+            gsap.to(btn, { x, y, duration: 0.2, ease: 'power2.out' });
+          }
+        });
+        btn.addEventListener('mouseleave', () => {
+          if (typeof gsap !== 'undefined') {
+            gsap.to(btn, { x: 0, y: 0, duration: 0.4, ease: 'power2.out' });
+          }
+        });
+
+        // Particle blast on click for primary actions
+        if (btn.classList.contains('sw-btn--primary') || btn.classList.contains('sw-topcta')) {
+          btn.addEventListener('click', (e) => {
+            blastOff(e.clientX, e.clientY);
+          });
+        }
+      });
+    }
+    wireInteractiveButtons();
+    setTimeout(wireInteractiveButtons, 600);
+
+    // =========================================================================
+    // 6. HERO ENTRANCE KINETIC ORCHESTRATION & PRELOADER BOOT SEQUENCE
+    // =========================================================================
+    function animateHeroEntrance() {
+      if (typeof gsap === 'undefined') return;
+      const tl = gsap.timeline();
+      tl.fromTo('.sw-hero__meta', { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0);
+      tl.fromTo('.sw-hero__title .amx-word', { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.04, ease: 'power4.out' }, 0.1);
+      tl.fromTo('.sw-hero__bottom', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 0.35);
+    }
+    window.animateHeroEntrance = animateHeroEntrance;
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const preloadBar = document.getElementById('amxPreloadBar');
+      const preloadCount = document.getElementById('amxPreloadCount');
+      const curtainTop = document.getElementById('curtainTop');
+      const curtainBottom = document.getElementById('curtainBottom');
+      const preloaderContent = document.getElementById('preloaderContent');
+      const preloader = document.getElementById('amxPreloader');
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          // Split curtain reveal
+          gsap.to(curtainTop, { yPercent: -100, duration: 0.7, ease: 'power4.inOut' });
+          gsap.to(curtainBottom, { yPercent: 100, duration: 0.7, ease: 'power4.inOut' });
+          gsap.to(preloaderContent, {
+            opacity: 0,
+            scale: 1.04,
+            duration: 0.45,
+            ease: 'power3.in',
+            onComplete: () => {
+              if (preloader) preloader.style.display = 'none';
+              wireInteractiveButtons();
+              animateHeroEntrance();
+            }
+          });
+        }
+      });
+
+      const progressObj = { value: 0 };
+      tl.to(progressObj, {
+        value: 100,
+        duration: 1.2,
+        ease: 'power2.inOut',
+        onUpdate: () => {
+          const val = Math.round(progressObj.value);
+          if (preloadCount) preloadCount.textContent = `${String(val).padStart(2, '0')}%`;
+          if (preloadBar) preloadBar.style.transform = `scaleX(${val / 100})`;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
